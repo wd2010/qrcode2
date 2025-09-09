@@ -245,7 +245,7 @@ h1 {
   padding: 20px;
   background: #f8f9fa;
   border-radius: 10px;
-  max-height: 100vh;
+  max-height: 99vh;
   overflow-y: auto;
 }
 
