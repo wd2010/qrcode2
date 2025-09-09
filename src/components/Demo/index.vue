@@ -9,9 +9,16 @@
           <input type="number" id="testCount" v-model.number="testCount" min="1" max="10000" :disabled="isTesting">
         </div>
         
+        <div class="form-group">
+          <label for="testCount">level:</label>
+          <a-select v-model:value="levelVal" style="width: 100%" >
+            <a-select-option v-for="level in levels" :key="level" :value="level">{{ level }}</a-select-option>
+          </a-select>
+        </div>
+
         <div class="qrcode-container">
           <p>当前测试二维码 ({{ currentTest }}/{{ testCount }})</p>
-          <qrcode-vue :value="currentCode" :size="200" level="H" id="qrcode"></qrcode-vue>
+          <qrcode-vue :value="currentCode" :size="200" :level="levelVal" id="qrcode"></qrcode-vue>
           <p>原始: <strong>{{ currentCode }}</strong></p>
           <p>识别: <strong>{{ recognizedCode || '等待识别...' }}</strong></p>
         </div>
@@ -64,7 +71,7 @@ export default {
     QrcodeVue
   },
   setup() {
-    const testCount = ref(100);
+    const testCount = ref(200);
     const currentTest = ref(0);
     const isTesting = ref(false);
     const testResults = ref([]);
@@ -72,6 +79,8 @@ export default {
     const errorCount = ref(0);
     const currentCode = ref('');
     const recognizedCode = ref('');
+    const levels = ['L', 'M', 'Q', 'H'];
+    const levelVal = ref('H');
     
 
     // 生成以MED开头，后跟18位数字的字符串
@@ -169,7 +178,9 @@ export default {
       stopTests,
       successRate,
       errorRate,
-      progress
+      progress,
+      levels,
+      levelVal
     };
   }
 };
