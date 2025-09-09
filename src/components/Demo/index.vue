@@ -44,7 +44,7 @@
       </div>
       
       <div class="test-results">
-        <h3>测试结果 (最近100条)</h3>
+        <h3>测试结果 (最近{{ testCount }}条)</h3>
         <div v-for="result in testResults.slice(0, 100)" :key="result.id" class="result-item" :class="result.success ? 'success' : 'error'">
           <p><strong>#{{ result.id }}</strong> - {{ result.timestamp }} - 
             <span v-if="result.success">✅ 成功</span>
@@ -245,7 +245,7 @@ h1 {
   padding: 20px;
   background: #f8f9fa;
   border-radius: 10px;
-  max-height: 90vh;
+  max-height: 100vh;
   overflow-y: auto;
 }
 
